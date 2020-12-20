@@ -49,7 +49,7 @@ def get_gooods(serach):
     # 遍历每个divs，获取商品详细信息
     for div in divs:
         # print(search)
-        xh += 1
+        xh += 1 
         # 获取图片地址
         img = div.find_element_by_xpath(
             './/div[@class="pic"]/a/img').get_attribute('data-src')
