@@ -109,7 +109,7 @@ if __name__ == "__main__":
     # 所有的数据将保存到datas中
     datas = []
     # 查找的关键词集合
-    searchs = {'java语言','python','c++','安卓开发','JavaScript','html5','vue','人工智能与机器学习','数据结构','node.js','linux','计算机组成原理','汇编原理','swift语言','go语言'}
+    searchs = {'java语言','python'}
     # 扫码登录函数
     login()
     # 查找所有商品信息
