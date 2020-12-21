@@ -4,7 +4,7 @@ version:
 Author: wy
 Date: 2020年07月28日 20:43:05
 LastEditors: wy
-LastEditTime: 2020年12月20日 23:07:40
+LastEditTime: 2020年12月21日 22:32:46
 '''
 from selenium import webdriver
 import time
@@ -17,7 +17,7 @@ def dropScroll(start=1,end=10,step=1):
         time.sleep(0.5)
         # 代表滑动条位置
         j = x/10
-        js = 'document.documentElement.scrollTop = document.documentElement.scrollHeight * %f' % j
+        js = 'window.navigator.webdriver=undefined;document.documentElement.scrollTop = document.documentElement.scrollHeight * %f' % j
         # 运行上面的js代码
         driver.execute_script(js)
 def getGooods(serach):
@@ -44,15 +44,18 @@ def getGooods(serach):
         # 运行上面的js代码
         # driver.execute_script(js)
         time.sleep(2)
-        driver.find_element_by_xpath('//*[@id="J_TabBar"]/li[2]/a').click()
+        # driver.find_element_by_xpath('//*[@id="J_TabBar"]/li/a[@tabindex="-1"]').click()
         # 获取评论
-        title = driver.find_element_by_xpath('').text
         time.sleep(2)
         print(title)
-        comments = dirver.find_elements_by_class_name('tm-col-master')
+        comments = driver.find_elements_by_class_name('tm-col-master')
+        num=0
         for comment in comments:
             text = comment.find_element_by_class_name('tm-rate-fulltxt')
-            print(text.text)
+            
+            time.sleep(1)
+            print(text.text,num)
+            num+=1
         
         driver.close()
         driver.switch_to.window(n[0])
@@ -89,9 +92,12 @@ driver.maximize_window()
 #输入账号密码
 driver.find_element_by_id("fm-login-id").send_keys("")
 password = driver.find_element_by_id("fm-login-password").send_keys("")
+js = 'window.navigator.webdriver=undefined;'
+# 运行上面的js代码
+driver.execute_script(js)
 # 点击登录按钮
 driver.find_element_by_xpath('//*[@id="login-form"]/div[4]/button').click()
-searchs = {'衣服男','丝袜','卫衣','jk制服','鞋子'}
+searchs = {'丝袜','卫衣','jk制服','鞋子','衣服男'}
 time.sleep(2)
 toSearchs(searchs)
 dirver.close()
